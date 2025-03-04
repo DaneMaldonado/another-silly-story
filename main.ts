@@ -1,7 +1,17 @@
-let Explorer: Sprite = null
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+	
+})
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+	
+})
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+	
+})
+controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
+	
+})
 tiles.setCurrentTilemap(tilemap`level2`)
-controller.moveSprite(Explorer)
-Explorer = sprites.create(img`
+let Explorer = sprites.create(img`
     . f f f . f f f f f . . . . 
     f f f f f c c c c f f . . . 
     f f f f b c c c c c c f . . 
@@ -19,5 +29,9 @@ Explorer = sprites.create(img`
     . . . . f f f f f f . . . . 
     . . . . . f f f . . . . . . 
     `, SpriteKind.Player)
+controller.moveSprite(Explorer)
+Explorer.setBounceOnWall(true)
+scene.cameraFollowSprite(Explorer)
 Explorer.x = 1
-Explorer.x = 1
+Explorer.y = 1
+Explorer.scale = 0.75
