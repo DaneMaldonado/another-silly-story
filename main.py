@@ -1,60 +1,77 @@
 def on_overlap_tile(sprite, location):
-    sprites.destroy(sprite)
+    game.game_over(False)
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.green_outer_south_west,
     on_overlap_tile)
 
 def on_overlap_tile2(sprite2, location2):
-    sprites.destroy(sprite2)
+    game.game_over(False)
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.green_outer_west1,
     on_overlap_tile2)
+
+def on_overlap_tile3(sprite3, location3):
+    game.show_long_text("You have completed the maze and found civilization! Great job! Click A.",
+        DialogLayout.TOP)
+    pause(100)
+    game.game_over(True)
+scene.on_overlap_tile(SpriteKind.player,
+    assets.tile("""
+        myTile1
+    """),
+    on_overlap_tile3)
 
 def on_up_pressed():
     pass
 controller.up.on_event(ControllerButtonEvent.PRESSED, on_up_pressed)
 
-def on_overlap_tile3(sprite3, location3):
-    sprites.destroy(sprite3)
+def on_overlap_tile4(sprite4, location4):
+    game.game_over(False)
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.green_outer_east0,
-    on_overlap_tile3)
-
-def on_overlap_tile4(sprite4, location4):
-    sprites.destroy(sprite4)
-scene.on_overlap_tile(SpriteKind.player,
-    sprites.dungeon.green_outer_north0,
     on_overlap_tile4)
 
 def on_overlap_tile5(sprite5, location5):
-    sprites.destroy(sprite5)
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.green_outer_north0,
+    on_overlap_tile5)
+
+def on_overlap_tile6(sprite6, location6):
+    game.game_over(False)
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.green_outer_north_west,
-    on_overlap_tile5)
+    on_overlap_tile6)
 
 def on_left_pressed():
     pass
 controller.left.on_event(ControllerButtonEvent.PRESSED, on_left_pressed)
 
-def on_overlap_tile6(sprite6, location6):
-    sprites.destroy(sprite6)
+def on_overlap_tile7(sprite7, location7):
+    game.game_over(False)
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.green_outer_north_east,
-    on_overlap_tile6)
+    on_overlap_tile7)
 
 def on_right_pressed():
     pass
 controller.right.on_event(ControllerButtonEvent.PRESSED, on_right_pressed)
 
-def on_overlap_tile7(sprite7, location7):
-    sprites.destroy(sprite7)
+def on_overlap_tile8(sprite8, location8):
+    game.game_over(False)
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.green_outer_south0,
-    on_overlap_tile7)
+    on_overlap_tile8)
 
 def on_down_pressed():
     pass
 controller.down.on_event(ControllerButtonEvent.PRESSED, on_down_pressed)
+
+def on_overlap_tile9(sprite9, location9):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.green_outer_south_east,
+    on_overlap_tile9)
 
 game.show_long_text("Welcome to my game!", DialogLayout.CENTER)
 pause(100)
@@ -84,8 +101,8 @@ Explorer = sprites.create(img("""
             . . . . . f f f . . . . . .
     """),
     SpriteKind.player)
+tiles.place_on_tile(Explorer, tiles.get_tile_location(5, 5))
 controller.move_sprite(Explorer)
-Explorer.set_position(16, 54)
 Explorer.set_bounce_on_wall(True)
 scene.camera_follow_sprite(Explorer)
 Explorer.x = 1
