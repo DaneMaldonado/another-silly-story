@@ -58,8 +58,8 @@ let Explorer = sprites.create(img`
     . . . . f f f f f f . . . . 
     . . . . . f f f . . . . . . 
     `, SpriteKind.Player)
+tiles.placeOnTile(Explorer, tiles.getTileLocation(5, 5))
 controller.moveSprite(Explorer)
-Explorer.setPosition(16, 54)
 Explorer.setBounceOnWall(true)
 scene.cameraFollowSprite(Explorer)
 Explorer.x = 1
