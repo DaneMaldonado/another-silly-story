@@ -10,6 +10,11 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 	
 })
+game.showLongText("Welcome to my game!", DialogLayout.Center)
+pause(100)
+game.showLongText("An explorer is exploring a jungle and stumbles across a maze in order to reach his final destination. If the explorer hits a wall during his time in the maze while on his adventure, he is eliminated. The explorer must beat the maze in order to reach civilization. There may be traps set in the maze in which the explorer needs to surpass.", DialogLayout.Full)
+pause(100)
+game.showLongText("Are you ready? Click A.", DialogLayout.Center)
 tiles.setCurrentTilemap(tilemap`level2`)
 let Explorer = sprites.create(img`
     . f f f . f f f f f . . . . 
