@@ -1,14 +1,38 @@
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterSouthWest, function (sprite, location) {
+    game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterWest1, function (sprite, location) {
+    game.gameOver(false)
+})
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 	
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterEast0, function (sprite, location) {
+    game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterNorth0, function (sprite, location) {
+    game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterNorthWest, function (sprite, location) {
+    game.gameOver(false)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 	
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterNorthEast, function (sprite, location) {
+    game.gameOver(false)
+})
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 	
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterSouth0, function (sprite, location) {
+    game.gameOver(false)
+})
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 	
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterSouthEast, function (sprite, location) {
+    game.gameOver(false)
 })
 game.showLongText("Welcome to my game!", DialogLayout.Center)
 pause(100)
@@ -35,6 +59,7 @@ let Explorer = sprites.create(img`
     . . . . . f f f . . . . . . 
     `, SpriteKind.Player)
 controller.moveSprite(Explorer)
+Explorer.setPosition(16, 54)
 Explorer.setBounceOnWall(true)
 scene.cameraFollowSprite(Explorer)
 Explorer.x = 1
