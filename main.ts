@@ -10,7 +10,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
     game.gameOver(true)
 })
 function SpawnEnemy () {
-    for (let value of tiles.getTilesByType(sprites.castle.tilePath5)) {
+    for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
         EnemyPlayer1 = sprites.create(img`
             ........................
             ....ffffff..............
@@ -38,6 +38,7 @@ function SpawnEnemy () {
             ........................
             `, SpriteKind.Enemy)
         tiles.placeOnTile(EnemyPlayer1, value)
+        EnemyPlayer1.scale = 0.65
     }
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterEast0, function (sprite, location) {
@@ -59,10 +60,11 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterSouthEast, func
     game.gameOver(false)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    sprites.destroy(Explorer)
+    game.splash(game.askForString("You lost!"))
+    pause(100)
+    game.gameOver(false)
 })
 let EnemyPlayer1: Sprite = null
-let Explorer: Sprite = null
 game.showLongText("Welcome to my game!", DialogLayout.Center)
 pause(100)
 game.showLongText("An explorer is exploring a jungle and stumbles across a maze in order to reach his final destination. If the explorer hits a wall during his time in the maze while on his adventure, he is eliminated. The explorer must beat the maze in order to reach civilization. There may be traps set in the maze in which the explorer needs to surpass.", DialogLayout.Full)
@@ -70,7 +72,7 @@ pause(100)
 game.showLongText("Are you ready? Click A.", DialogLayout.Center)
 tiles.setCurrentTilemap(tilemap`level2`)
 SpawnEnemy()
-Explorer = sprites.create(img`
+let Explorer = sprites.create(img`
     . f f f . f f f f f . . . . 
     f f f f f c c c c f f . . . 
     f f f f b c c c c c c f . . 
@@ -94,4 +96,4 @@ scene.cameraFollowSprite(Explorer)
 Explorer.x = 1
 Explorer.y = 1
 Explorer.scale = 0.75
-Explorer.setPosition(13, 53)
+Explorer.setPosition(12, 78)
