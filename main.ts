@@ -1,13 +1,18 @@
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterSouthWest, function (sprite, location) {
+    music.play(music.createSoundEffect(WaveShape.Sine, 5000, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
     game.gameOver(false)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterWest1, function (sprite, location) {
+    music.play(music.createSoundEffect(WaveShape.Sine, 5000, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
     game.gameOver(false)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
+    text_input = 1
     game.showLongText("You have completed the maze and found civilization! Great job! Click A.", DialogLayout.Top)
-    pause(100)
+    game.splash(game.askForNumber("Select 1 to stay win and click A!"))
+    game.setGameOverEffect(true, effects.confetti)
     game.gameOver(true)
+    music.play(music.stringPlayable("C5 A B G A F G E ", 120), music.PlaybackMode.UntilDone)
 })
 function SpawnEnemy () {
     for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
@@ -42,37 +47,76 @@ function SpawnEnemy () {
     }
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterEast0, function (sprite, location) {
+    music.play(music.createSoundEffect(WaveShape.Sine, 5000, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
     game.gameOver(false)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterNorth0, function (sprite, location) {
+    music.play(music.createSoundEffect(WaveShape.Sine, 5000, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
     game.gameOver(false)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterNorthWest, function (sprite, location) {
+    music.play(music.createSoundEffect(WaveShape.Sine, 5000, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
     game.gameOver(false)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterNorthEast, function (sprite, location) {
+    music.play(music.createSoundEffect(WaveShape.Sine, 5000, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
     game.gameOver(false)
 })
+function EnemyFollow () {
+    EnemyFollower = sprites.create(img`
+        .......ff...............
+        ....ffff2ff.............
+        ..ffeeeef2ff............
+        .ffeeeeef22ff...........
+        .feeeeffeeeef...........
+        .fffffee2222ef..........
+        fffe222ffffe2f..........
+        ffffffffeeefff..........
+        fefe44ebf44eef..........
+        .fee4d4bfddef...........
+        ..feee4dddee.c..........
+        ...f2222eeddeccccccc....
+        ...f444e44ddecddddd.....
+        ...fffffeeee.ccccc......
+        ..ffffffff...c..........
+        ..fff..ff...............
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        `, SpriteKind.Enemy)
+    EnemyFollower.follow(Explorer, 50)
+    EnemyFollower.setPosition(14, 87)
+}
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterSouth0, function (sprite, location) {
+    music.play(music.createSoundEffect(WaveShape.Sine, 5000, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
     game.gameOver(false)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterSouthEast, function (sprite, location) {
+    music.play(music.createSoundEffect(WaveShape.Sine, 5000, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
     game.gameOver(false)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.splash(game.askForString("You lost!"))
-    pause(100)
     game.gameOver(false)
 })
+let EnemyFollower: Sprite = null
 let EnemyPlayer1: Sprite = null
+let text_input = 0
+let Explorer: Sprite = null
 game.showLongText("Welcome to my game!", DialogLayout.Center)
 pause(100)
 game.showLongText("An explorer is exploring a jungle and stumbles across a maze in order to reach his final destination. If the explorer hits a wall during his time in the maze while on his adventure, he is eliminated. The explorer must beat the maze in order to reach civilization. There may be traps set in the maze in which the explorer needs to surpass.", DialogLayout.Full)
 pause(100)
 game.showLongText("Are you ready? Click A.", DialogLayout.Center)
+music.play(music.stringPlayable("C5 B A G F E D C ", 120), music.PlaybackMode.LoopingInBackground)
 tiles.setCurrentTilemap(tilemap`level2`)
 SpawnEnemy()
-let Explorer = sprites.create(img`
+EnemyFollow()
+Explorer = sprites.create(img`
     . f f f . f f f f f . . . . 
     f f f f f c c c c f f . . . 
     f f f f b c c c c c c f . . 
@@ -96,4 +140,4 @@ scene.cameraFollowSprite(Explorer)
 Explorer.x = 1
 Explorer.y = 1
 Explorer.scale = 0.75
-Explorer.setPosition(12, 78)
+Explorer.setPosition(96, 76)
